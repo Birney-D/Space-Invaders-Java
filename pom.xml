@@ -16,8 +16,13 @@
     </dependencies>
 
     <build>
+         <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        
         <plugins>
-
             <!-- Modern compiler that understands Java 21 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

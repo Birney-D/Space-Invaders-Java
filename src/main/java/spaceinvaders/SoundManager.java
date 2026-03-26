@@ -1,10 +1,10 @@
 package spaceinvaders;
-
 import javax.sound.sampled.*;
-import java.util.Objects;
+import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+
 
 public class SoundManager {
 
@@ -14,18 +14,27 @@ public class SoundManager {
     public static void playSound(String fileDir) {
         soundThreadPool.submit(() -> {
             try {
-                AudioInputStream soundSource = AudioSystem.getAudioInputStream(
-                        Objects.requireNonNull(SoundManager.class.getResourceAsStream(fileDir))
-                );
+
+                // Use getResource to get a URL instead of InputStream
+                URL soundURL = SoundManager.class.getResource(fileDir);
+                if (soundURL == null) {
+                    System.err.println("Sound file not found: " + fileDir);
+                    return;
+                }
+
+                AudioInputStream soundSource = AudioSystem.getAudioInputStream(soundURL);
 
                 Clip soundClip = AudioSystem.getClip();
                 soundClip.open(soundSource);
                 soundClip.start();
+
+                // close clip
                 soundClip.addLineListener(event -> {
                     if (event.getType() == LineEvent.Type.STOP) {
                         soundClip.close(); // Close when done playing
                     }
                 });
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

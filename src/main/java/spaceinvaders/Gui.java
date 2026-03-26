@@ -1,14 +1,8 @@
 package spaceinvaders;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-
-import javax.sound.sampled.*;
-import java.io.File;
-import java.io.IOException;
 
 
 public class  Gui {
@@ -24,27 +18,11 @@ public class  Gui {
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-//        label = new JLabel("I'm a label");
-
-//        JButton labelButton = new JButton("Change Label");
-//        labelButton.addActionListener(event -> label.setText("Ouch!"));
-
-//        DrawingBoard myCanvas = new DrawingBoard();
-
-//        JButton colorButton = new JButton("Change Color");
-//        colorButton.addActionListener(event -> myCanvas.repaint());
-
-
         Canvas doodle = new Canvas();
 
         // Adding these widgets to the frame:
 
         frame.getContentPane().add(BorderLayout.CENTER, doodle);
-
-//        frame.getContentPane().add(BorderLayout.CENTER, myCanvas);
-//        frame.getContentPane().add(BorderLayout.SOUTH, colorButton);
-//        frame.getContentPane().add(BorderLayout.EAST, labelButton);
-//        frame.getContentPane().add(BorderLayout.WEST, label);
 
         frame.setSize(600, 600);
         frame.setVisible(true);
@@ -95,39 +73,6 @@ public class  Gui {
 
             g.drawImage(curImg, xPos, yPos, 50, 50,  this);
 
-        }
-    }
-
-    public static void main(String[] args) {
-        try {
-            // Load the audio file
-            File audioFile = new File("./Resources/player/shoot.wav");
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-
-            // Define the desired format (match the format from your audio file)
-            AudioFormat format = audioStream.getFormat();
-            DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
-
-            // Get the source data line
-            SourceDataLine line = (SourceDataLine) AudioSystem.getLine(info);
-            line.open(format);
-            line.start();
-
-            // Buffer to hold audio data
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-
-            // Play the audio
-            while ((bytesRead = audioStream.read(buffer, 0, buffer.length)) != -1) {
-                line.write(buffer, 0, bytesRead);
-            }
-
-            // Close the resources
-            line.drain();
-            line.close();
-            audioStream.close();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
         }
     }
 }

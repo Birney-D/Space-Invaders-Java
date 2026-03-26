@@ -1,5 +1,4 @@
 package spaceinvaders;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +6,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -147,12 +145,12 @@ public class Game implements Runnable {
 
         // StartButton:
         startButton = new JButton("  START GAME  ");
-        startButton.setBounds(screenWidth / 4 + 30, screenHeight - 100, tileSize * 5 + 30, 30);
+        startButton.setBounds(screenWidth / 4 + 40, screenHeight - 100, tileSize * 5 + 30, 50);
         startButton.setBorderPainted(false);
         screen.add(startButton);  // titleScreen.add(startButton) -> gameScreen
         startButton.setForeground(Color.RED);
-        startButton.setBackground(new Color(0, 0, 0, 0));
-        startButton.setFont(new Font("Serif", Font.ITALIC, 30));
+        startButton.setBackground(Color.BLACK);
+        startButton.setFont(new Font("Serif", Font.BOLD, 25));
         actionJackson = new ActionHandler(this);
         startButton.addActionListener(actionJackson);
         startButton.setEnabled(true);

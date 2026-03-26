@@ -1,6 +1,4 @@
 package spaceinvaders;
-
-import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
@@ -70,27 +68,6 @@ public class Entity {
         you.setBounds(other.xCoordinate, other.yCoordinate, other.width, other.height);
 
         return me.intersects(you);
-    }
-
-    public void makeSound(String fileDir) {
-        try {
-            AudioInputStream soundSource = AudioSystem.getAudioInputStream(Objects
-                    .requireNonNull(getClass().getResourceAsStream(fileDir)));
-            Clip soundClip = AudioSystem.getClip();
-            soundClip.open(soundSource);
-
-            // wait for clip to stop playing, then close it
-            soundClip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
-                    // Clip has finished playing, now close it
-                    soundClip.close();
-                }
-            });
-
-            soundClip.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
 

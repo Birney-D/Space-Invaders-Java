@@ -1,6 +1,6 @@
 package spaceinvaders;
-
 import java.awt.*;
+
 
 public class Shot extends Entity {
 

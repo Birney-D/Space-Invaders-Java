@@ -1,8 +1,8 @@
 package spaceinvaders;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
+
 
 public class Ship extends Entity {
     public KeyHandler keyMaker;

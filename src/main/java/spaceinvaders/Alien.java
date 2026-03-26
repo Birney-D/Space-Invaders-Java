@@ -1,20 +1,17 @@
 package spaceinvaders;
-
 import java.awt.*;
+
 
 public class Alien extends Entity {
 
     public Shot weapon;
     public String type;
-
     public String audioFile1, audioFile2;
-
+    
     public int imageCounter;
     public int dropSpeed;
-
     public int bounty;
     public int strength;
-
     public int shotSpeed;
 
     public static boolean goingRight = true;
